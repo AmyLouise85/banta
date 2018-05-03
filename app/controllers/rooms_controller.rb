@@ -34,7 +34,6 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
-    @message = message.new(message_params)
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
@@ -76,15 +75,7 @@ class RoomsController < ApplicationController
       @room = Room.find(params[:id])
     end
 
-    def set_message
-      @room = Room.find(params[:id])
-    end
-
-    def message_params
-        params.require(:message).permit(:body)
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
+   # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:name)
     end

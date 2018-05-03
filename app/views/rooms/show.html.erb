@@ -2,14 +2,15 @@
 
 <p>
   <strong>Name:</strong>
+
   <%= @room.name %>
 </p>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
 
-<%= form_for @message, url: "/rooms/1" do |f| %>
-  <%= f.text_field :body, rows: 1, class: "form-control", autofocus: true %>
+<%= form_for @message, url: room_messages_path(@room) do |f| %>
+  <%= f.text_field :body, class: "form-control", autofocus: true %>
   <%= f.submit "Say it!" %>
 <% end %>
 
