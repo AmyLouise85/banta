@@ -17,13 +17,11 @@
         <h4> Chat With Friends</h4>
       <nav>
         <%= link_to('Rooms',rooms_path)%> |        
-        <%= link_to('Profile', users_path)%> |
+        <%= link_to('Profile', "users/:id") %> |
         <%= link_to('SignUp', new_user_registration_path)%> |
         <%= link_to('Login', new_user_session_path)%> |
-
       </nav>
     </header>
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

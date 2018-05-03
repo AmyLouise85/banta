@@ -2,11 +2,12 @@ class UsersController < ApplicationController
 
 def index
   @user = current_user
-  @rooms = Room.all
+  @rooms = Room.all.sorted
 end
+
  def show
-  
-  redirect_to(root_path)
+  @user = User.find(params[:id])
+  @rooms = Room.all
  end
 
-end
+ end

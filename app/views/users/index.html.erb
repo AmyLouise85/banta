@@ -1,5 +1,5 @@
   <%= link_to('LogOut', destroy_user_session_path)%>
-  <div class="container"> 
+  <div class="container">
       <div class="room_sidebar"> <!-- side bar on the left hand side that hold room names -->
        <br> <h1> Rooms:</h1>
         <ul><% @rooms.each do |room| %>
@@ -12,8 +12,8 @@
     </div>
 
     <div class="input_box"><!--  box on the bottom right hand side underneath 'display messages' box that you type messages into.  -->
-      Enter your message...
+  enter message here
     </div>
+
+
 </div>
-
-

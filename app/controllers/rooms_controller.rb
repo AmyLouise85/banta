@@ -5,12 +5,21 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     @rooms = Room.all.sorted
+    @messages = Message.all
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
-  def show
+  def show    
+    @message = Message.new
   end
+
+  # def create
+  #   @user = current_user
+  #   @room = rooms.find(params[:room_id])
+  #   @message = message.new(review_params)
+  #   @messages = Message.all
+  # end
 
   # GET /rooms/new
   def new
@@ -25,7 +34,7 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
-
+    @message = message.new(message_params)
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
@@ -65,6 +74,14 @@ class RoomsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
+    end
+
+    def set_message
+      @room = Room.find(params[:id])
+    end
+
+    def message_params
+        params.require(:message).permit(:body)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

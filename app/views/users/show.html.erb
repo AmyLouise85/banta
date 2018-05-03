@@ -1,0 +1,11 @@
+This is the profile of:
+<%= @user.name %>
+<br>
+Bio: <%= @user.bio %>
+<br>
+Location:<%= @user.location %>
+<br>
+<%= @user.name %>'s Rooms: <ul><% @user.rooms.each do |room| %>
+<li><%= link_to(room.name, room_path) %></li>
+<% end %></ul>
+<br>
