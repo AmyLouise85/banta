@@ -1,4 +1,4 @@
-  <%= link_to('LogOut', destroy_user_session_path)%>
+  <%= link_to('LogOut', destroy_user_session_path(@user.id))%>
   <div class="container">
       <div class="room_sidebar"> <!-- side bar on the left hand side that hold room names -->
        <br> <h1> Rooms:</h1>
