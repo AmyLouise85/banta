@@ -72,3 +72,13 @@ table, td, tr{
   background: #e4e7ec;
   grid-gap: 10px;
 }
+#messageView{
+  grid-area: messages;
+  overflow: auto;
+  background:#EEE;
+
+  h3{
+    text-align:center;
+    font-size:200%;
+    margin-top:100px;
+  }

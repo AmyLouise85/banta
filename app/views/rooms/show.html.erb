@@ -9,13 +9,45 @@
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
 
-<%= form_for @message, url: room_messages_path(@room) do |f| %>
-  <%= f.text_field :body, class: "form-control", autofocus: true %>
+<%= form_with url: room_messages_path(@room), local: false do |f| %>
+  <%= f.text_area :body, class: "form-control", autofocus: true %>
   <%= f.submit "Say it!" %>
 <% end %>
+<div class='messageView'>
 
-<% @messages.where(room: params[:id]).each do |message| %>
-<%= message.body %>
-<%= message.user.name %> @ <%= message.created_at %><br>
-<% end %>
-<%= %>
+<%= render partial: "messages/message", collection: @room.messages %>
+
+</div>
+
+<script type="text/javascript">
+
+function scroll(){
+  var objDiv = document.querySelector(".messageView");
+  objDiv.scrollTop = objDiv.scrollHeight;
+}
+
+function initMessages(room, cb){
+  scroll();
+  App.messages = App.cable.subscriptions.create({channel: "BanterChannel", room: room, format: 'html'}, {
+    connected: function() {
+    },
+
+    disconnected: function() {
+    },
+
+    received: function(data) {
+      console.log(data.message);
+      // Called when there's incoming data on the websocket for this channel
+      document.querySelector(".messageView").innerHTML += data.message;
+      document.querySelector('textarea').value = '';
+      // scroll();
+      
+    }
+  });
+} 
+  
+document.addEventListener('DOMContentLoaded', function(){
+    initMessages(<%= @room.id %>);
+  });
+
+</script>
