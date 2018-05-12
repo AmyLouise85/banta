@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Banta</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <!--link rel="stylesheet" type="text/css" href="bantacsslayout.css"-->
-   <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
-
+<head>
+  <title>Banta</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <!--link rel="stylesheet" type="text/css" href="bantacsslayout.css"-->
+  <link href="https://fonts.googleapis.com/css?family=Modak" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Modak|Vidaloka" rel="stylesheet">  
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
   <body>
-     <header>
-        <br><h1><%= link_to('Banta', root_path)%> </h1><br>
-        <h4> Chat With Friends</h4>
-      <nav>
-        <!-- <h5><%= @currentusername %></h5> -->
-        <%= link_to('Rooms',rooms_path)%> |        
-        <%= link_to('Profile',users_path) %> |
-        <%= link_to('SignUp', new_user_registration_path)%> |
-        <%= link_to('Login', new_user_session_path)%> |
-      </nav>
+    <div class="content">
+    <header>
+      <span class="brand"><h1>LOGO</h1> </span>
+      <div id="navbar" >
+        <%= render( partial: 'layouts/nav')%>      
+      </div>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
+    <div class="aside">
+      <h4> Chat With Friends</h4>
+      <span class="alert"><%= alert %></span>
+      <%= yield %>
+    </div>
+    <div class="main">
+      <%= link_to 'Create New Room', new_room_path %>
+      
+        <%= render( partial: 'layouts/chat')%>
+      </div>
+    <footer>FOOTER</footer>
+  </div>
+</body>
 </html>
  

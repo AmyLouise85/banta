@@ -1,53 +1,35 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-
-  <%= @room.name %>
-</p>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
-
-<%= form_with url: room_messages_path(@room), local: false do |f| %>
-  <%= f.text_area :body, class: "form-control", autofocus: true %>
-  <%= f.submit "Say it!" %>
-<% end %>
 <div class='messageView'>
-
-<%= render partial: "messages/message", collection: @room.messages %>
-
+  <p id="notice"><%= notice %></p>
+  <p><strong>Room: </strong> <%= @room.name %></p>
+  <%= link_to 'Edit', edit_room_path(@room) %>|<%= link_to 'Back', rooms_path %>
+    <p><%= render partial: "messages/message", collection: @room.messages %></p>
+    <p class="live-message"></p>
+  </div>
+  <%= form_for [@room, Message.new], remote: false do |f| %>
+  <%= f.text_area :body, cols: 100, rows: 2, class: "form-control", autofocus: true %>
+  <%= f.submit "Say it!" %>
+  <% end %>
 </div>
-
 <script type="text/javascript">
+  function scroll(){
+    var objDiv = document.querySelector(".messageView");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }
 
-function scroll(){
-  var objDiv = document.querySelector(".messageView");
-  objDiv.scrollTop = objDiv.scrollHeight;
-}
-
-function initMessages(room, cb){
+  function initMessages(room, cb){
   scroll();
-  App.messages = App.cable.subscriptions.create({channel: "BanterChannel", room: room, format: 'html'}, {
-    connected: function() {
-    },
-
-    disconnected: function() {
-    },
-
-    received: function(data) {
+  App.messages = App.cable.subscriptions.create(
+    {channel: "BanterChannel", room: room, format: 'html'},
+    { connected: function() {}, disconnected: function(){}, received: function(data) {
       console.log(data.message);
       // Called when there's incoming data on the websocket for this channel
-      document.querySelector(".messageView").innerHTML += data.message;
+      document.querySelector(".live-message").innerHTML += data.message;
       document.querySelector('textarea').value = '';
-      // scroll();
-      
-    }
-  });
-} 
-  
-document.addEventListener('DOMContentLoaded', function(){
+      scroll();
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function(){
     initMessages(<%= @room.id %>);
   });
-
 </script>

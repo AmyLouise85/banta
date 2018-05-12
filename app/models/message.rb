@@ -20,6 +20,4 @@ class Message < ApplicationRecord
   def to_json
     JSON.generate({body: body, user: user.name, created_at: created_at})
   end
-
-
 end
