@@ -13,49 +13,122 @@
  *= require_tree .
  *= require_self
  */
-*{
-  margin: 0;
-  padding: 0;
-}
+
 html{
-  background: #dddfe6;
-  text-align: center;
+  max-width: 100vw;
+  background: #b9c6b7b0;
+  display: flex;  
+  justify-content: space-around;
+  }
+body {
+  margin:  auto;
+  max-width: 80em;
+  padding: 0em 0;
+  font-family: 'Vidaloka', serif; 
+  background-color: #9f2a0159;
 
 }
-header{
-  background-color: #cff0da;
-}
-h1, h4 {
-  font-size: 1.5rem;
-  font-family: 'Gugi', cursive;
+
+body,
+header,
+footer,
+.main,
+.aside, nav{
+  border-radius: 0.31em;
+
 }
 
-nav {
-  margin: 10px;
-  padding: 10px 10px;
-  width: 97%;
+header,
+footer{
+  grid-column: 1 / span 2;
+  background: no-repeat url("banta_chat1.jpg");
+  background-size: cover;
+  color: white;
+  font-family: 'Vidaloka', serif;
+
+}
+
+nav, .navbar{
+  width:81vw;
+  height: 4rem;
+  text-align:center;
   display: inline-block;
   list-style: none;
-  border: 2px solid black;
-  background-color: #c9d6de;
+  text-decoration: none;
+  background:pink;
+  position: absolute;
+  margin: -1rem -2rem;
+ }
+
+ .navbar a:hover {
+  background-color: #ddd;
+  color: black;
 }
-.room_sidebar, li{
-  list-style: none;
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+ /*.sticky{
+  position: fixed;
+  top: 0;
+  width: 100%;
+ }
+ .sticky{
+  padding: top:60;
+
+ }
+*/
+.content{
+  display: grid;
+  grid-template-columns: 30vw repeat(auto-fit, minmax(100px, 56vw));
+  grid-template-rows: 20vw auto 20vw;
+  grid-gap: 0.50em;
+}
+
+
+/*.content{
+  display: grid;
+  grid-template-columns: 20vw 50vw;
+  grid-template-rows: 30vw auto 30vw;
+  grid-gap: 0.50em;
+}
+*/
+.room-grid{
+  display: grid;
+  grid-template-columns: 1fr  ;
+  grid-gap: 2px;
+  text-align: left;
+
 
 }
+
+h1, h3 {
+  font-size: 2.5rem;
+  font-family: 'Modak', cursive;
+  font-family: 'Vidaloka', serif;
+}
+
+
+ .main, li, a{
+  
+  list-style: none;
+  text-decoration: none;
+  background:none;
+ }
+
 li{
-  margin: 15px;
-  padding: 5px;
+  display: inline-block;
+  padding-right: 2rem;
   text-align: left;
 }
-table, td, tr{
- list-style: none;
 
-}
-.room_sidebar {
-  border: 2px solid black;
-  background-color: #55967e;
-   font-family: 'Gugi', cursive;
+.aside {
+  text-align: center;
+  background:#ffdfb896;
+  font-family: 'Modak', cursive;
+  font-family: 'Vidaloka', serif;
 }
 .message_box{
   border: 2px solid black;
@@ -63,22 +136,18 @@ table, td, tr{
 
 }
 
-.container{
-  justify-content: stretch; 
-  display: inline-grid;
-  width: 100%;
-  grid-template-columns: 200px 2fr;
-  grid-template-rows: auto;
-  background: #e4e7ec;
-  grid-gap: 10px;
-}
-#messageView{
-  grid-area: messages;
+.messageView {
+  text-align: left;
   overflow: auto;
-  background:#EEE;
+  background:;
+}
 
-  h3{
-    text-align:center;
-    font-size:200%;
-    margin-top:100px;
-  }
+.brand{
+  text-align: left;
+  text-transform: uppercase;
+  margin: 10px;
+}
+ul{
+  padding:2px;
+  margin: 15px;
+}

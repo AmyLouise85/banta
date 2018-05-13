@@ -11,6 +11,13 @@ RSpec.describe Room, type: :model do
     it { should route(:post, '/rooms').to(action: :create) }
     it { should route(:patch, '/rooms/5').to(action: :update, id: 5) }
     it { should route(:delete, '/rooms/8').to(action: :destroy, id: 8) }
-  end      
+
+  describe 'POST#create' do
+    before {post :create }
+
+    it { should redirect(users_path)}
+    end    
+  end
+
 end
 

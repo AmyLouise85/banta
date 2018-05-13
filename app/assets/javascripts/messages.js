@@ -14,3 +14,15 @@
 //     this.perform('rant', {message: message});
 //   }
 // });
+//--This bit is to create sticky nab bar?? not working 
+// window.addEventListener('scroll', function myFunction() {
+//   if (window.pageYOffset >= sticky) {
+//     bar.classList.add("sticky")
+   
+//   } else {
+//   bar.classList.remove("sticky");
+//    }
+// });
+
+//  var bar = document.querySelector('.navbar navbar-right');
+//  var sticky = bar;
